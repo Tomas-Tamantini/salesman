@@ -21,7 +21,7 @@ region = region_from_csv('test_files/cities2.txt')
 
 solver = Optimizer(region, initial_temp, final_temp, num_it)
 
-draw_region(region)
+draw_region(region, show_city_names=True)
 root.update()
 
 cost_values = []
@@ -50,7 +50,7 @@ for i in range(num_it):
 
 print(f'Solution:\n{str(solver)}')
 
-draw_region(region, solver.route)
+draw_region(region, solver.route, show_city_names=True)
 root.update()
 
 plot(num_it, cost_values, temperature_values)

@@ -1,26 +1,24 @@
 from .canvas import canvas, canvas_width, canvas_height
 
 city_radius = 10
-highlight_color = '#f5dd29'
-highlight_color = '#00a5ff'
 
 
-def draw_city(position, city_name, highlight=False):
+def draw_city(position, city_name, show_city_name=False):
     xc, yc = position
     x0 = xc - city_radius
     x1 = xc + city_radius
     y0 = yc - city_radius
     y1 = yc + city_radius
-    color = highlight_color if highlight else '#00a5ff'
-    canvas.create_oval(x0, y0, x1, y1, fill='#ffae19', outline=color, width=2)
-    canvas.create_text(xc, yc, text=city_name[:2], fill='#0a1172')
+    canvas.create_oval(x0, y0, x1, y1, fill='#ffae19', outline='#00a5ff', width=2)
+    if show_city_name:
+        canvas.create_text(xc, yc, text=city_name[:2], fill='#0a1172')
 
 
 def draw_road(pos_a, pos_b):
-    canvas.create_line(*pos_a, *pos_b, width=2, fill=highlight_color)
+    canvas.create_line(*pos_a, *pos_b, width=2, fill='#00a5ff')
 
 
-def draw_region(region, route=None):
+def draw_region(region, route=None, show_city_names=False):
     canvas.delete('all')
     padding = city_radius + 0.1 * canvas_width
     min_x, min_y, max_x, max_y = region.dimensions.values()
@@ -45,5 +43,4 @@ def draw_region(region, route=None):
             draw_road(pos_a, pos_b)
     for city in region.cities:
         position = coordinate_transformer(city.position)
-        highlight = route is not None and city in route
-        draw_city(position, city.name, highlight)
+        draw_city(position, city.name, show_city_names)
