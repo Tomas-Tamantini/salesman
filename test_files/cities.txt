@@ -1,0 +1,7 @@
+Berlin, 0, 0
+Tokyo, 100, 100
+Lima, 140, 100
+Cape Town, 100, 140
+Baghdad, 110, 20
+Bombay, 210, 20
+Oslo, 150, 60
